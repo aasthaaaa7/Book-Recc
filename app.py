@@ -13,8 +13,8 @@ similarity_scores = pickle.load(open("similarity_scores.pkl", "rb"))
 book_titles = list(pt.index.values)
 
 book_name=list(popular_df['Book-Title'].values),
-author=list(books['Book-Author'].values),
-image=list(books['Image-URL-M'].values),
+author=list(popular_df['Book-Author'].values),
+image=list(popular_df['Image-URL-M'].values),
 votes=list(popular_df['Num-Ratings'].values),
 rating=list((round(popular_df['Avg-Ratings'], 2).values))
 
@@ -51,7 +51,21 @@ if st.button('Show Recommendation'):
 
 st.markdown('___')
 st.markdown('___')
-
+st.title('Top rated books')
+d=0
+for i in range(12):
+    cols = st.columns(4)
+    for c in range(4):
+        with cols[c]:
+                        st.image(image[0][d])
+                        st.write(book_name[0][d])
+                        st.write(author[0][d])
+                        st.write('avg rating', rating[d])
+                        st.write('total votes', votes[0][d])
+        d=d+1
+    #d = d+4
+    
+    
 # ---- HIDE STREAMLIT STYLE ----
 hide_st_style = """
                     <style>
